@@ -1,0 +1,49 @@
+{
+  "name": "hubot-youtube-info",
+  "description": "Show video metadata when YouTube URLs are seen.",
+  "version": "0.1",
+
+  "author": "Matthew M. Boedicker (https://github.com/mmb)",
+  "contributors": "Karl Birch (https://github.com/mbwk)",
+  "license": "MIT",
+
+  "keywords": [
+    "hubot",
+    "hubot-scripts",
+    "youtube"
+  ],
+
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ClaudeBot/hubot-youtube-info.git"
+  },
+
+  "bugs": {
+    "url": "https://github.com/ClaudeBot/hubot-youtube-info/issues"
+  },
+
+  "dependencies": {
+  },
+
+  "peerDependencies": {
+    "hubot": "2.x"
+  },
+
+  "devDependencies": {
+    "hubot": "2.x",
+    "mocha": "*",
+    "chai": "*",
+    "sinon-chai": "*",
+    "sinon": "*",
+    "grunt-mocha-test": "~0.7.0",
+    "grunt-release": "~0.6.0",
+    "matchdep": "~0.1.2",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+
+  "main": "index.coffee",
+
+  "scripts": {
+    "test": "grunt test"
+  }
+}
