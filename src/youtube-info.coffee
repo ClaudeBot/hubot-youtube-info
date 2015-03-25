@@ -43,9 +43,12 @@ showInfo = (msg, video_hash) ->
         data = JSON.parse(body)
         entry = data.entry
         r = entry.gd$rating
+        title = entry.title.$t
+        date = entry.published.$t
+        date = date.substr(0, date.indexOf("T"))
         thumbs_up = Math.round(((r.average-r.min)/(r.max-r.min))*r.numRaters)
         thumbs_down = r.numRaters - thumbs_up
-        msg.send "YouTube: #{entry.title.$t} (#{formatTime(entry.media$group.yt$duration.seconds)}, #{humanizeNumber(entry.yt$statistics.viewCount)} views, #{humanizeNumber(thumbs_up)} thumbs up, #{humanizeNumber(thumbs_down)} thumbs down)"
+        msg.send "YouTube: #{title} (#{formatTime(entry.media$group.yt$duration.seconds)}, #{humanizeNumber(entry.yt$statistics.viewCount)} views, uploaded #{date}, #{humanizeNumber(thumbs_up)} thumbs up, #{humanizeNumber(thumbs_down)} thumbs down)"
       else
         msg.send "YouTube: error: #{video_hash} returned #{res.statusCode}: #{body}"
 
