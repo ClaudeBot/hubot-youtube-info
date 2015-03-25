@@ -46,9 +46,12 @@ showInfo = (msg, video_hash) ->
         title = entry.title.$t
         date = entry.published.$t
         date = date.substr(0, date.indexOf("T"))
-        thumbs_up = Math.round(((r.average-r.min)/(r.max-r.min))*r.numRaters)
-        thumbs_down = r.numRaters - thumbs_up
-        msg.send "YouTube: #{title} (#{formatTime(entry.media$group.yt$duration.seconds)}, #{humanizeNumber(entry.yt$statistics.viewCount)} views, uploaded #{date}, #{humanizeNumber(thumbs_up)} thumbs up, #{humanizeNumber(thumbs_down)} thumbs down)"
+        if r
+          thumbs_up = Math.round(((r.average-r.min)/(r.max-r.min))*r.numRaters)
+          thumbs_down = r.numRaters - thumbs_up
+          msg.send "YouTube: #{title} (#{formatTime(entry.media$group.yt$duration.seconds)}, #{humanizeNumber(entry.yt$statistics.viewCount)} views, uploaded #{date}, #{humanizeNumber(thumbs_up)} thumbs up, #{humanizeNumber(thumbs_down)} thumbs down)"
+        else
+          msg.send "YouTube: #{title} (#{formatTime(entry.media$group.yt$duration.seconds)}, #{humanizeNumber(entry.yt$statistics.viewCount)} views, uploaded #{date}, no rating)"
       else
         msg.send "YouTube: error: #{video_hash} returned #{res.statusCode}: #{body}"
 
