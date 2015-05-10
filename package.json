@@ -1,7 +1,7 @@
 {
   "name": "hubot-youtube-info",
   "description": "Show video metadata when YouTube URLs are seen.",
-  "version": "0.1.1",
+  "version": "0.2.0",
 
   "author": "Matthew M. Boedicker (https://github.com/mmb)",
   "contributors": "Karl Birch (https://github.com/mbwk)",
