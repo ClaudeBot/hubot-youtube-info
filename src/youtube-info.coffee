@@ -6,7 +6,8 @@
 #   None
 #
 # Configuration:
-#   None
+#   You need to specify your GOOGLE_API_KEY as an environment variable when running
+#   Hubot, otherwise you will get an invalid key error
 #
 # Commands:
 #   [YouTube video URL] - shows title, time length, and upload time for the URL
@@ -17,6 +18,8 @@
 # Author:
 #   mmb
 #   mbwk
+
+GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
 
 querystring = require 'querystring'
 url = require 'url'
@@ -35,36 +38,35 @@ module.exports = (robot) ->
     showInfo msg, video_hash
 
 showInfo = (msg, video_hash) ->
-  msg.http("http://gdata.youtube.com/feeds/api/videos/#{video_hash}")
+  msg.http("https://www.googleapis.com/youtube/v3/videos?part=contentDetails%2Cstatistics%2Csnippet&id=#{video_hash}&key=#{GOOGLE_API_KEY}")
     .query({
       alt: 'json'
     }).get() (err, res, body) ->
       if res.statusCode is 200
         data = JSON.parse(body)
-        entry = data.entry
-        r = entry.gd$rating
-        title = entry.title.$t
-        date = entry.published.$t
+        video = data.items[0]
+        snippet = video.snippet
+        statistics = video.statistics
+        contentDetails = video.contentDetails
+        title = snippet.title
+        time = formatTime(contentDetails.duration)
+        views = statistics.viewCount
+        date = snippet.publishedAt
         date = date.substr(0, date.indexOf("T"))
-        if r
-          thumbs_up = Math.round(((r.average-r.min)/(r.max-r.min))*r.numRaters)
-          thumbs_down = r.numRaters - thumbs_up
-          msg.send "YouTube: #{title} (#{formatTime(entry.media$group.yt$duration.seconds)}, #{humanizeNumber(entry.yt$statistics.viewCount)} views, uploaded #{date}, #{humanizeNumber(thumbs_up)} thumbs up, #{humanizeNumber(thumbs_down)} thumbs down)"
-        else
-          msg.send "YouTube: #{title} (#{formatTime(entry.media$group.yt$duration.seconds)}, #{humanizeNumber(entry.yt$statistics.viewCount)} views, uploaded #{date}, no rating)"
+        likesCount = statistics.likeCount
+        dislikesCount = statistics.dislikeCount
+        msg.send "YouTube: #{title} (#{time}, #{views} views, uploaded #{date}, #{likesCount} likes, #{dislikesCount} dislikes)"
       else
         msg.send "YouTube: error: #{video_hash} returned #{res.statusCode}: #{body}"
 
-formatTime = (seconds) ->
-  min = Math.floor(seconds / 60)
-  sec = seconds % 60
-
-  result = ''
-  if (min > 0)
-    result += "#{min}m"
-  if (sec > 0)
-    result += "#{sec}s"
-
+formatTime = (timeStr) ->
+  pPos = timeStr.indexOf("P") + 1
+  tPos = timeStr.indexOf("T") + 1
+  pLen = tPos - pPos - 1
+  tLen = timeStr.length - tPos
+  p = timeStr.substr(pPos, pLen)
+  t = timeStr.substr(tPos, tLen)
+  result = "#{t.toLowerCase()}"
   result
 
 humanizeNumber = (n) ->
