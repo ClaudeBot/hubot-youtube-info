@@ -69,10 +69,3 @@ formatTime = (timeStr) ->
   result = "#{t.toLowerCase()}"
   result
 
-humanizeNumber = (n) ->
-  n = n.toString()
-  while true
-    n2 = n.replace(/(\d)(\d{3})($|,)/g, '$1,$2$3')
-    break if n == n2
-    n = n2
-  n
