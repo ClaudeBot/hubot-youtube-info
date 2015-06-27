@@ -1,5 +1,7 @@
 # hubot-youtube-info
 
+[![Build Status](https://travis-ci.org/ClaudeBot/hubot-youtube-info.svg)](https://travis-ci.org/ClaudeBot/hubot-youtube-info)
+
 Shows video metadata when YouTube URLs are seen.
 
 Youtubeのリンクを見た時に動画のメタデータを表示する
