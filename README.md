@@ -1,6 +1,7 @@
 # hubot-youtube-info
 
 [![Build Status](https://travis-ci.org/ClaudeBot/hubot-youtube-info.svg)](https://travis-ci.org/ClaudeBot/hubot-youtube-info)
+[![devDependency Status](https://david-dm.org/ClaudeBot/hubot-youtube-info/dev-status.svg)](https://david-dm.org/ClaudeBot/hubot-youtube-info#info=devDependencies)
 
 Shows video metadata when YouTube URLs are seen.
 
