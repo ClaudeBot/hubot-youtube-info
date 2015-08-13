@@ -32,6 +32,8 @@ Then simply run `npm update` or `npm install`.
 The script is often coupled with an irc adapter, and will listen to chat for any valid
 youtube links.  Simply paste a link, and the bot will do the rest.
 
+`GOOGLE_API_KEY` environment variable should be set for script to function properly. To obtain API key: https://www.youtube.com/watch?v=JbWnRhHfTDA
+
 
 ## Summary of changes
 
