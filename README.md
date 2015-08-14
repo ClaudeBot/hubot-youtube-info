@@ -34,6 +34,12 @@ youtube links.  Simply paste a link, and the bot will do the rest.
 
 `GOOGLE_API_KEY` environment variable should be set for script to function properly. To obtain API key: https://www.youtube.com/watch?v=JbWnRhHfTDA
 
+### Obtaining a $GOOGLE\_API\_KEY
+0. Create a Google account to gain access to the Developers Console && create a Project
+1. Find and enable access to the "Youtube Data API v3" for your project
+2. Create a "Public" access token for your project
+4. Set the $GOOGLE\_API\_KEY environment variable to this token
+
 
 ## Summary of changes
 
