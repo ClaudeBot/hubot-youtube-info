@@ -12,5 +12,5 @@ describe "youtube-info", ->
         require("../src/youtube-info")(@robot)
 
     it "registers a hear listener", ->
-        expect(@robot.hear).to.have.been.calledWith(/(https?:\/\/www\.youtube\.com\/watch\?.+?)(?:\s|$)/i)
+        expect(@robot.hear).to.have.been.calledWith(/(https?:\/\/(www|gaming)\.youtube\.com\/watch\?.+?)(?:\s|$)/i)
         expect(@robot.hear).to.have.been.calledWith(/(https?:\/\/youtu\.be\/)([a-z0-9\-_]+)/i)
