@@ -28,7 +28,7 @@ module.exports = (robot) ->
   if not GOOGLE_API_KEY?
       return robot.logger.error "hubot-youtube-info: Missing GOOGLE_API_KEY in environment. Please set and try again."
 
-  robot.hear /(https?:\/\/www\.youtube\.com\/watch\?.+?)(?:\s|$)/i, (msg) ->
+  robot.hear /(https?:\/\/(www|gaming)\.youtube\.com\/watch\?.+?)(?:\s|$)/i, (msg) ->
     url_parsed = url.parse(msg.match[1])
     query_parsed = querystring.parse(url_parsed.query)
 

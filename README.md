@@ -47,3 +47,4 @@ youtube links.  Simply paste a link, and the bot will do the rest.
     downloaded via npm.
 2.  Added date of video publish/upload to the information printed about the video.
 3.  Fixed a bug in the script that caused it to crash if a video lacked ratings.
+4.  Added support for gaming subdomain.
