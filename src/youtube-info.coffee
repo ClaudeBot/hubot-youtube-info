@@ -60,7 +60,7 @@ showInfo = (msg, video_hash) ->
         dislikesCount = statistics.dislikeCount
         msg.send "YouTube: #{title} (#{time}, #{views} views, uploaded #{date}, #{likesCount} likes, #{dislikesCount} dislikes)"
       else
-        msg.send "YouTube: error: #{video_hash} returned #{res.statusCode}: #{body}"
+        msg.send "YouTube: error: #{video_hash} returned #{res.statusCode} (have you enabled the Youtube Data API?)"
 
 formatTime = (timeStr) ->
   pPos = timeStr.indexOf("P") + 1
